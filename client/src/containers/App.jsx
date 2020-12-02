@@ -6,13 +6,14 @@ import Header from 'components/Header';
 
 // Containers
 import WriteMemo from './WriteMemo';
+import Login from './Login';
 
 const App = () => {
   return (
     <Layout>
       <Header />
       <Layout.Main>
-        <WriteMemo />
+        <Login />
       </Layout.Main>
     </Layout>
   )

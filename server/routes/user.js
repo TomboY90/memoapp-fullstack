@@ -10,4 +10,19 @@ router.get('/', (req, res) => {
   });
 })
 
+router.post('/', (req, res) => {
+  const { name, password } = req.body;
+
+  const sql = "insert into users (name, password) VALUES (?, ?)";
+  const values = [name, password];
+  
+  connection.query(sql, values, (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err })
+    }
+
+    res.status(200).json({ name })
+  });
+})
+
 module.exports = router;

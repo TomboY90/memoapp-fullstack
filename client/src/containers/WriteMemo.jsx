@@ -1,16 +1,13 @@
 import React from 'react';
-import { InputPlaceholder, WhiteBox } from 'components/WriteMemo';
+import { WhiteBox } from 'components/WriteMemo';
 import { InputSet, SaveButton } from 'components/Shared';
+import { connect, useDispatch } from 'react-redux';
 
-const WriteMemo = () => {
-
+const WriteMemo = (props) => {
   return (
     <WhiteBox>
-      {/* <InputPlaceholder /> */}
-      <InputSet />
-      <SaveButton />
+      <InputSet/>
+      <SaveButton/>
     </WhiteBox>
   )
 }
-
-export default WriteMemo;
