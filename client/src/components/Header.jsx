@@ -1,5 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect, useDispatch } from 'react-redux';
+
+// Action Func
+import { createMemoRequest, deleteMemoRequest } from 'redux/memo/actions';
+
+const Header = ({ user, currentMemo }) => {
+  const dispatch = useDispatch();
+
+  const handleAddMemo = () => {
+    dispatch(createMemoRequest(user));
+  }
+
+  const handleDeleteMemo = () => {
+    dispatch(deleteMemoRequest(currentMemo));
+  }
+
+  return (
+    <Wrapper>
+      <h2>memo</h2>
+
+      <ButtonWrapper>
+        <span onClick={handleAddMemo}>추가</span> &nbsp;&nbsp;
+        <span onClick={handleDeleteMemo}>삭제</span>
+      </ButtonWrapper>
+    </Wrapper>
+  )
+}
+
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  currentMemo: state.memo.currentMemo,
+})
+
+export default connect(mapStateToProps)(Header);
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,12 +54,11 @@ const Wrapper = styled.div`
   font-family: 'Baloo', cursive;
 `
 
-const Header = () => {
-  return (
-    <Wrapper>
-      <h2>memo</h2>
-    </Wrapper>
-  )
-}
+const ButtonWrapper = styled.div`
+  position: absolute;
+  right: 10px;
 
-export default Header;
+  span {
+    font-size: 2rem;
+  }
+`

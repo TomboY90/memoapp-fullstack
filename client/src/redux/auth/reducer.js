@@ -5,7 +5,7 @@ import {
   AUTH_REGISTER,
   AUTH_REGISTER_FAILURE,
   AUTH_REGISTER_SUCCESS
-} from './actions';
+} from './types';
 
 const initialState = {
   user: {

@@ -13,9 +13,10 @@ const Layout = ({ children }) => (
 )
 
 Layout.Main = styled.div`
-  margin-top: 2rem;
+  height: calc(100vh - 60px);
   position: relative;
   transition: all .3s;
+  overflow: hidden;
 
   ${media.desktop`
       width: 990px;

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
-const todoRouter = require("./routes/todo");
+const memoRouter = require("./routes/memo");
 
 const app = express();
 
@@ -12,6 +12,7 @@ const app = express();
 app.all('/*', function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+	res.header("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS, DELETE")
 	next();
 });
 
@@ -25,7 +26,7 @@ app.set('port', process.env.PORT || 3001);
 // routes
 app.use("/", indexRouter);
 app.use("/user", userRouter);
-app.use("/todo", todoRouter);
+app.use("/memo", memoRouter);
 
 // server start
 app.listen(app.get('port'), () => {

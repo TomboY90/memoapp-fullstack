@@ -3,13 +3,6 @@ const router = express.Router();
 
 const connection = require('../middlewares/mysql-connect');
 
-router.get('/', (req, res) => {
-  connection.query('select name from users', (err, rows) => {
-    if (err) throw err;
-    res.json({ users: rows });
-  });
-})
-
 router.post('/', (req, res) => {
   const { name, password } = req.body;
 
@@ -22,6 +15,19 @@ router.post('/', (req, res) => {
     }
 
     res.status(200).json({ name })
+  });
+})
+
+router.post('/login', (req, res) => {
+  const { name, password } = req.body;
+
+  const sql = "select name from users where name = ? and password = ?";
+  const values = [name, password];
+
+  connection.query(sql, values, (error, rows) => {
+    // 에러 처리 해야함 !
+    if (error) throw error;
+    res.status(200).json(rows[0])
   });
 })
 

@@ -1,15 +1,10 @@
 import { apiClient } from 'lib/api';
 
 // Action Types
-export const AUTH_REGISTER = 'AUTH_REGISTER';
-export const AUTH_REGISTER_SUCCESS = 'AUTH_REGISTER_SUCCESS';
-export const AUTH_REGISTER_FAILURE = 'AUTH_REGISTER_FAILURE';
-export const AUTH_LOGIN = 'AUTH_LOGIN';
-export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
-export const AUTH_LOGIN_FAILURE = 'AUTH_LOGIN_FAILURE';
+import { AUTH_LOGIN, AUTH_LOGIN_FAILURE, AUTH_LOGIN_SUCCESS, AUTH_REGISTER, AUTH_REGISTER_FAILURE, AUTH_REGISTER_SUCCESS } from './types';
 
 // Action Creator
-export const loginRequest = ({ name, password }) => async dispatch => {
+export const signinRequest = ({ name, password }) => async dispatch => {
   // Inform Login API is starting
   dispatch({
     type: AUTH_LOGIN
@@ -17,7 +12,9 @@ export const loginRequest = ({ name, password }) => async dispatch => {
 
   // API REQUEST
   try {
-    const res = await apiClient.get('/user', {name, password});
+    const res = await apiClient.post('/user/login', { name, password });
+
+    console.log('로그인 응답', res);
 
     dispatch({
       type: AUTH_LOGIN_SUCCESS,
@@ -26,6 +23,28 @@ export const loginRequest = ({ name, password }) => async dispatch => {
   } catch (error) {
     dispatch({
       type: AUTH_LOGIN_FAILURE,
+      payload: error
+    })
+  }
+}
+
+export const signupRequest = ({ name, password }) => async dispatch => {
+  // Inform Login API is starting
+  dispatch({
+    type: AUTH_REGISTER
+  });
+
+  // API REQUEST
+  try {
+    const res = await apiClient.get('/user', {name, password});
+
+    dispatch({
+      type: AUTH_REGISTER_SUCCESS,
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch({
+      type: AUTH_REGISTER_FAILURE,
       payload: error
     })
   }

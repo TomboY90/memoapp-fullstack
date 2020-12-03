@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 // Actions
-import { loginRequest } from 'redux/auth/actions';
+import { signinRequest, signupRequest } from 'redux/auth/actions';
 import styled from 'styled-components';
 
 
@@ -34,8 +34,12 @@ const Login = () => {
     });
   }
 
-  const handleLogin = () => {
-    dispatch(loginRequest(form))
+  const handleSignin = () => {
+    dispatch(signinRequest(form))
+  }
+
+  const handleSignup = () => {
+    dispatch(signupRequest(form))
   }
 
   return (
@@ -45,9 +49,9 @@ const Login = () => {
         <form>
           <h1>Create Account</h1>
           <span>use your nickname for registration</span>
-          <input type="text" placeholder="Name" name="name" value={form.name} onChange={e => handleChange(e)} />
-          <input type="password" placeholder="Password" name="password" value={form.password} onChange={e => handleChange(e)} />
-          <button type="button">Sign Up</button>
+          <input type="text" placeholder="Name" name="name" value={newForm.name} onChange={e => handleSignupFormChange(e)} />
+          <input type="password" placeholder="Password" name="password" value={newForm.password} onChange={e => handleSignupFormChange(e)} />
+          <button type="button" onClick={handleSignup}>Sign Up</button>
         </form>
       </div>
 
@@ -55,9 +59,9 @@ const Login = () => {
       <div className="form-container sign-in-container">
         <form>
           <h1>Sign in</h1>
-          <input type="text" placeholder="Name" name="name" value={newForm.name} onChange={e => handleSignupFormChange(e)} />
-          <input type="password" placeholder="Password" name="password" value={newForm.password} onChange={e => handleSignupFormChange(e)} />
-          <button type="button" onClick={handleLogin}>Sign In</button>
+          <input type="text" placeholder="Name" name="name" value={form.name} onChange={e => handleChange(e)} />
+          <input type="password" placeholder="Password" name="password" value={form.password} onChange={e => handleChange(e)} />
+          <button type="button" onClick={handleSignin}>Sign In</button>
         </form>
       </div>
 
@@ -95,7 +99,7 @@ const Container = styled.div`
 	width: 768px;
 	max-width: 100%;
   min-height: 480px;
-  margin: 0 auto;
+  margin: 10% auto;
 
   h1 {
     font-weight: bold;

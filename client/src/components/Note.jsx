@@ -3,19 +3,21 @@ import styled from 'styled-components';
 
 const Note = (props) => {
   const { note, onEditNote } = props;
-  const { title, contents } = note;
+  const { title, content } = note;
 
   return (
     <NoteWrapper>
       <input
         className="title"
+        name="title"
         value={title}
-        onChange={() => console.log('note input change')}
+        onChange={(e) => onEditNote(e.target.name, e.target.value)}
       />
       <textarea
         className="note-contents"
-        value={contents}
-        onChange={() => console.log('note contents change')}
+        name="content"
+        value={content}
+        onChange={(e) => onEditNote(e.target.name, e.target.value)}
       />
     </NoteWrapper>
   )
@@ -25,7 +27,7 @@ export default Note;
 
 const NoteWrapper = styled.div`
   width: 100%;
-  padding: 40px 70px 0px 70px;
+  height: 100%;
 
   .title {
     display: block;
@@ -34,8 +36,7 @@ const NoteWrapper = styled.div`
     font-family: inherit;
     border: 0px;
     margin: 0;
-    padding: 0;
-    margin-bottom: 30px;
+    padding: 27px;
     width: 100%;
     outline: none;
   }
@@ -47,8 +48,8 @@ const NoteWrapper = styled.div`
     font-family: inherit;
     border: 0px;
     margin: 0;
-    padding: 0;
-    width: 100%;
+    padding: 0 27px;
+    width: 97%;
     height: calc(100% - 60px);
     outline: none;
     resize: none;

@@ -9,7 +9,7 @@ const List = (props) => {
   return (
     <ListWrapper>
       {notes.map(note => {
-        const { id, title, contents } = note;
+        const { id, title, content } = note;
 
         return (
           <ListItem
@@ -17,7 +17,7 @@ const List = (props) => {
             id={id}
             active={id === activeId}
             title={title}
-            contents={contents}
+            contents={content}
             onClick={() => onListItemClick(id)}
           />
         );
@@ -33,4 +33,5 @@ const ListWrapper = styled.div`
   width: 360px;
   height: 100%;
   border-right: 1px solid #eee;
+  background-color: white;
 `

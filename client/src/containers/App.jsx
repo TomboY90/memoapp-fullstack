@@ -13,14 +13,9 @@ const App = ({ authenticated }) => {
   return (
     <Layout>
       <Header />
+        { !authenticated && <Login /> }
       <Layout.Main>
-        {
-          !authenticated && <Login />
-        }
-
-        {
-          authenticated && <Memo />
-        }
+        { authenticated && <Memo /> }
       </Layout.Main>
     </Layout>
   )
