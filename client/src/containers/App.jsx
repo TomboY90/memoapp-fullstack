@@ -1,22 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 // Component
 import Layout from 'components/Layout';
 import Header from 'components/Header';
 
 // Containers
-import WriteMemo from './WriteMemo';
 import Login from './Login';
+import Memo from './Memo';
 
-const App = () => {
+const App = ({ authenticated }) => {
   return (
     <Layout>
       <Header />
       <Layout.Main>
-        <Login />
+        {
+          !authenticated && <Login />
+        }
+
+        {
+          authenticated && <Memo />
+        }
       </Layout.Main>
     </Layout>
   )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  authenticated: state.auth.authenticated
+})
+
+export default connect(mapStateToProps)(App);

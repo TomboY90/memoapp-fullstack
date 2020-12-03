@@ -28,9 +28,7 @@ const reducer = (state = initialState, action) => {
     case AUTH_LOGIN_SUCCESS:
       return {
         ...state,
-        user: {
-          name: payload.name
-        },
+        user: { name: payload.name },
         isLoading: false,
         authenticated: true
       }

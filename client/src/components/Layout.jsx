@@ -13,9 +13,7 @@ const Layout = ({ children }) => (
 )
 
 Layout.Main = styled.div`
-  margin: 0 auto;
   margin-top: 2rem;
-  width: 1200px;
   position: relative;
   transition: all .3s;
 

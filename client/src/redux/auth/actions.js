@@ -17,7 +17,7 @@ export const loginRequest = ({ name, password }) => async dispatch => {
 
   // API REQUEST
   try {
-    const res = await apiClient.post('/user', {name, password});
+    const res = await apiClient.get('/user', {name, password});
 
     dispatch({
       type: AUTH_LOGIN_SUCCESS,
