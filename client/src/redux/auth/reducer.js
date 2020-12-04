@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        errMsg: payload.error
+        errMsg: payload.msg
       }
     default:
       return state;

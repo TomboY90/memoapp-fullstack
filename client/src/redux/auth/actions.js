@@ -14,17 +14,19 @@ export const signinRequest = ({ name, password }) => async dispatch => {
   try {
     const res = await apiClient.post('/user/login', { name, password });
 
-    console.log('로그인 응답', res);
-
     dispatch({
       type: AUTH_LOGIN_SUCCESS,
       payload: res.data
     })
   } catch (error) {
+    const msg = error.response.data.error;
+
     dispatch({
       type: AUTH_LOGIN_FAILURE,
-      payload: error
+      payload: { msg }
     })
+
+    alert(msg);
   }
 }
 
@@ -36,12 +38,14 @@ export const signupRequest = ({ name, password }) => async dispatch => {
 
   // API REQUEST
   try {
-    const res = await apiClient.get('/user', {name, password});
+    const res = await apiClient.post('/user', {name, password});
 
     dispatch({
       type: AUTH_REGISTER_SUCCESS,
       payload: res.data
     })
+
+    alert('계정을 생성했습니다.');
   } catch (error) {
     dispatch({
       type: AUTH_REGISTER_FAILURE,

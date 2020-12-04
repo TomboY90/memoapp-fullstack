@@ -39,7 +39,7 @@ const Login = () => {
   }
 
   const handleSignup = () => {
-    dispatch(signupRequest(form))
+    dispatch(signupRequest(newForm))
   }
 
   return (
